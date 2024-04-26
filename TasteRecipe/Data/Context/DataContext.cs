@@ -46,5 +46,74 @@ public partial class DataContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("recipes_author_fk");
         });
+
+        modelBuilder.Entity<Category>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_categories");
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.Property(e => e.Name).HasMaxLength(30).IsRequired();
+        });
+        
+        modelBuilder.Entity<Ingredient>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_ingredients");
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.Property(e => e.Name).HasMaxLength(30).IsRequired();
+        });
+    
+        modelBuilder.Entity<Illustration>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_illustrations");
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.Property(e => e.Path).HasMaxLength(1000).IsRequired();
+            entity.HasOne(e => e.Recipe)
+                .WithMany(e => e.Illustrations)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("illustrations_recipe_fk");
+        });
+        
+        modelBuilder.Entity<CategoryToRecipe>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_category_to_recipe");
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.HasOne(e => e.Category)
+                .WithMany(e => e.CategoriesToRecipes)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("category_to_recipe_category_fk");
+            entity.HasOne(e => e.Recipe)
+                .WithMany(e => e.CategoriesToRecipes)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("category_to_recipe_recipe_fk");
+        });
+        
+        modelBuilder.Entity<IngridientToRecipe>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_ingridient_to_recipe");
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.Property(e => e.AmountIngredients).HasMaxLength(30).IsRequired();
+            entity.HasOne(e => e.Ingredient)
+                .WithMany(e => e.IngridientsToRecipes)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("ingridient_to_recipe_ingredient_fk");
+            entity.HasOne(e => e.Recipe).WithMany(e => e.IngridientsToRecipes)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("ingridient_to_recipe_recipe_fk");
+        });
+        
+        modelBuilder.Entity<Favourite>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_favourites");
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.HasOne(e => e.User)
+                .WithMany(e => e.Favourites)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("favourites_user_fk");
+            entity.HasOne(e => e.Recipe)
+                .WithMany(e => e.Favourites)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("favourites_recipe_fk");
+        });
     }
+    
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
