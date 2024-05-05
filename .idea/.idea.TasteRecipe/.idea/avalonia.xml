@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="TasteRecipe/App.axaml" value="TasteRecipe/TasteRecipe.csproj" />
+        <entry key="TasteRecipe/Views/AuthorizationView.axaml" value="TasteRecipe/TasteRecipe.csproj" />
+        <entry key="TasteRecipe/Views/MainWindowView.axaml" value="TasteRecipe/TasteRecipe.csproj" />
+        <entry key="TasteRecipe/Views/RecipesPage.axaml" value="TasteRecipe/TasteRecipe.csproj" />
+        <entry key="TasteRecipe/Views/RecipesView.axaml" value="TasteRecipe/TasteRecipe.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

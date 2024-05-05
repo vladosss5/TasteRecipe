@@ -1,0 +1,77 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:TasteRecipe.ViewModels"
+             xmlns:tasteRecipe="clr-namespace:TasteRecipe"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:RecipesViewModel"
+             x:Class="TasteRecipe.Views.RecipesView"
+             x:Name="ThisPage">
+    
+    <UserControl.Resources>
+        <tasteRecipe:BitmapAssetValueConverter x:Key="BitmapAssetValueConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <ListBox Name="CategoryListBox" Grid.Column="0"
+                 ItemsSource="{Binding Categories}"
+                 SelectedItem="{Binding SelectCategory}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="RecipeListBox" Grid.Column="1"
+                 ItemsSource="{Binding Recipes}"
+                 CornerRadius="25"
+                 Margin="5"
+                 Padding="5"
+                 Background="Azure">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Grid.Row="0"
+                               Source="{Binding Preview, Converter=
+                               {StaticResource BitmapAssetValueConverter}}"
+                               Height="200" Width="200"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Margin="5"/>
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding Name}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="5"/>
+                        <TextBlock Grid.Row="2"
+                                   Text="{Binding Time}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="5"/>
+                        <Button Grid.Row="3"
+                                Content="Посмотреть рецепт"
+                                Margin="5"/>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+    </Grid>
+</UserControl>

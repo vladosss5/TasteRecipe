@@ -20,5 +20,14 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/MainWindow.axaml]
+[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Styles/AppStyle.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/AuthorizationView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/MainWindowView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/RecipesView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
