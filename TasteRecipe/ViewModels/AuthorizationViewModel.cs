@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using ReactiveUI;
+using TasteRecipe.Data;
 using TasteRecipe.Data.Context;
 using TasteRecipe.Models;
 using TasteRecipe.Views;

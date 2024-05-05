@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using DynamicData;
 using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
+using TasteRecipe.Data;
 using TasteRecipe.Data.Context;
 using TasteRecipe.Models;
 
