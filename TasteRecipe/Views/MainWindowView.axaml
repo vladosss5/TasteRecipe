@@ -2,15 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:TasteRecipe.ViewModels"
+        xmlns:vm="clr-namespace:TasteRecipe.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TasteRecipe.Views.MainWindowView"
-        x:DataType="viewModels:MainWindowViewModel"
+        x:DataType="vm:MainWindowViewModel"
         x:Name="ThisWindow"
         Title="MainWindowView">
         
         <Design.DataContext>
-                <viewModels:MainWindowViewModel/>
+                <vm:MainWindowViewModel/>
         </Design.DataContext>
         
         <Window.Styles>
@@ -31,7 +31,8 @@
                         Background="Azure" Margin="5" CornerRadius="10">
                         <StackPanel Orientation="Horizontal">
                                 <Button Height="50" Width="50"
-                                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        Command="{Binding OpenProfile}">
                                       <Image Width="50" Height="50"
                                              Source="/Assets/profile.png"/>
                                 </Button>
@@ -39,6 +40,10 @@
                                         VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <Image Width="50" Height="50"
                                                Source="/Assets/recipeBook.png"/>
+                                </Button>
+                                <Button Content="Создать рецепт" Height="50"
+                                        Command="{Binding OpenCreateRecipePage}">
+                                        
                                 </Button>
                         </StackPanel>
                 </Border>

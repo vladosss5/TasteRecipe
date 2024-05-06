@@ -24,11 +24,6 @@ public class RecipesViewModel : PageViewModelBase
     public RecipesViewModel()
     {
         Categories = new ObservableCollection<Category>(_dataContext.Categories.ToList());
-        // _selectCategory = Categories.FirstOrDefault(x => x.Id == 2);
-        
-        
-        
-
     }
 
     public Category SelectCategory
@@ -69,4 +64,6 @@ public class RecipesViewModel : PageViewModelBase
     }
     
     public override bool OpenRecipePage { get; protected set; }
+    public override bool OpenRecipeInfoPage { get; protected set; }
+    public override bool OpenCreateRecipePage { get; protected set; }
 }

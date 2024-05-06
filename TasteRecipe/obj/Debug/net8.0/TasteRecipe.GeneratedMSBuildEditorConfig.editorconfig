@@ -26,7 +26,13 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/AuthorizationView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/CreateRecipeView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/MainWindowView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/ProfileView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/Vpc/Documents/yчёба/Проекты/Course project/TasteRecipe/TasteRecipe/Views/RecipeInfoView.axaml]

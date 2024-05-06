@@ -52,9 +52,11 @@
                                    VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Margin="5"/>
                         <Button Grid.Row="3"
+                                
+                                CommandParameter="{Binding}"
                                 Content="Посмотреть рецепт"
                                 Margin="5"/>
-                        
+                        <!-- Command="{Binding ElementName=ThisPage, Path=ShowInfoRecipe}" -->
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
