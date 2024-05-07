@@ -14,7 +14,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         _currentPage = Pages[0];
         
-        OpenProfile = ReactiveCommand.Create<Window>(OpenProfileImpl);
+        // OpenProfile = ReactiveCommand.Create<Window>(OpenProfileImpl);
 
         var canOpenRecipePage = this.WhenAnyValue(x => x.CurrentPage.OpenRecipePage);
         OpenRecipePage = ReactiveCommand.Create(ShowRecipesImpl, canOpenRecipePage);

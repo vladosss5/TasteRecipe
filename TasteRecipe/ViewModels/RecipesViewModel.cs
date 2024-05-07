@@ -20,6 +20,7 @@ public class RecipesViewModel : PageViewModelBase
     private ObservableCollection<Recipe> _recipes = new ObservableCollection<Recipe>();
     private ObservableCollection<Illustration> _illustrations;
     private Category _selectCategory;
+    private bool _openRecipePage;
     
     public RecipesViewModel()
     {
@@ -62,8 +63,12 @@ public class RecipesViewModel : PageViewModelBase
         get => _illustrations;
         set => this.RaiseAndSetIfChanged(ref _illustrations, value);
     }
-    
-    public override bool OpenRecipePage { get; protected set; }
+
+    public override bool OpenRecipePage
+    {
+        get => _openRecipePage;
+        protected set => this.RaiseAndSetIfChanged(ref _openRecipePage, value);
+    }
     public override bool OpenRecipeInfoPage { get; protected set; }
     public override bool OpenCreateRecipePage { get; protected set; }
 }

@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Folder Include="Data\Migrations\" />
         <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**"/>
         <AvaloniaResource Include="AssetsUser\**" />

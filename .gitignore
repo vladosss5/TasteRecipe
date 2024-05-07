@@ -1,0 +1,7 @@
+bin/
+obj/
+/src/CoffeeMachine.API/Logs
+.idea
+netcoreapp3.1/
+config/
+/TasteRecipe/AssetsUser
