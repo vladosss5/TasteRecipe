@@ -1,0 +1,360 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TasteRecipes.ViewModels"
+        xmlns:views="clr-namespace:TasteRecipes.Views"
+        xmlns:tasteRecipes="clr-namespace:TasteRecipes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1080" d:DesignHeight="720"
+        x:Class="TasteRecipes.Views.MainWindowView"
+        x:DataType="vm:MainWindowViewModel"
+        x:Name="ThisWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="TasteRecipes">
+    
+    <Window.Styles>
+        <StyleInclude Source="/Styles/AppStyle.axaml" />
+    </Window.Styles>
+
+    <Window.Resources>
+        <tasteRecipes:BitmapAssetValueConverter x:Key="BitmapAssetValueConverter"/>
+    </Window.Resources>
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+    <Border Background="White" Height="50" Grid.Row="0"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            Opacity="0.95"/>
+    
+    <TabControl Grid.Row="0">
+        <!-- Профиль -->
+        <TabItem>
+            <TabItem.Header>
+                <Image MaxHeight="32" MaxWidth="32" Source="../Assets/profile.png"/>
+            </TabItem.Header>
+            <Grid>
+                <Border Background="White" CornerRadius="10"
+                        Margin="0, 5, 0, 0" Opacity="0.7"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+                    <Grid Margin="5" Background="Transparent"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch"
+                          Opacity="1.4">
+                    
+                        <TextBlock Text="Никнейм:"
+                                   Grid.Column="0" Grid.Row="0"
+                                   Margin="3"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding AuthUserNow.Nickname}"
+                                   Grid.Column="0" Grid.Row="0"
+                                   Margin="3"
+                                   HorizontalAlignment="Right"/>
+                    
+                        <Button Content="Сменить пароль"
+                                Grid.Column="0" Grid.Row="1"
+                                HorizontalAlignment="Left"
+                                Command="{ReflectionBinding ChangePasswordButton}"
+                                CommandParameter="{ReflectionBinding ElementName=ThisWindow}"/>
+                        
+                        <Button Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                                HorizontalContentAlignment="Right" 
+                                VerticalContentAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Height="40" Margin="5"
+                                Command="{ReflectionBinding ExitProfileButton}"
+                                CommandParameter="{ReflectionBinding ElementName=ThisWindow}">
+                            <Image Source="../Assets/ExitProfile.png"/>
+                        </Button>
+                    
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </Border>
+                
+                <Border Grid.Row="1" Grid.Column="0" 
+                        Background="White" CornerRadius="10"
+                        Opacity="0.7" Margin="0, 5, 0, 5" Padding="5">
+                    <TextBlock Text="ИЗБРАННОЕ"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Padding="5" Opacity="1.4"
+                               FontSize="20" FontWeight="Bold"/>
+                </Border>
+                
+                <Border Grid.Row="2" Grid.Column="0"
+                        Background="White" CornerRadius="10" 
+                        Opacity="0.7" Margin="0, 0, 0, 5">
+                    <ListBox x:Name="FavoriteListBox"
+                             ItemsSource="{Binding Favourites}"
+                             CornerRadius="10" Padding="5" Margin="0, 0, 0, 5"
+                             Background="Transparent" Opacity="1.4">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image Grid.Row="0"
+                                           Source="{Binding Recipe.Preview, Converter=
+                                           {StaticResource BitmapAssetValueConverter}}"
+                                           Height="200" Width="200"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Margin="5"/>
+                                    <TextBlock Grid.Row="1"
+                                               Text="{Binding Recipe.Name}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                    <TextBlock Grid.Row="2"
+                                               Text="{Binding Recipe.Time}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                    <Button Grid.Row="3"
+                                            Command="{Binding ElementName=ThisWindow, Path=DeleteOnFavorite}"
+                                            CommandParameter="{Binding}"
+                                            Content="Удалить из избранного"
+                                            HorizontalAlignment="Center"
+                                            Margin="5"/>
+                                    
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                
+                <Border Grid.Row="0" Grid.Column="1"
+                        Background="White" CornerRadius="10" 
+                        Margin="5, 5, 0, 0" Opacity="0.7">
+                    <TextBlock Text="МОИ РЕЦЕПТЫ"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Padding="5" FontSize="20" FontWeight="Bold" Opacity="1.4"/>
+                </Border>
+                
+                <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+                        Background="White" CornerRadius="10" 
+                        Margin="5, 5, 0, 5" Opacity="0.7">
+                    <ListBox x:Name="MyRecipesListBox"
+                             ItemsSource="{Binding MyRecipes}"
+                             CornerRadius="10" Opacity="1.4"
+                             Margin="5" Padding="5" Background="Transparent">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image Grid.Row="0"
+                                           Source="{Binding Preview, Converter=
+                                           {StaticResource BitmapAssetValueConverter}}"
+                                           Height="200" Width="200"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Margin="5"/>
+                                    <TextBlock Grid.Row="1"
+                                               Text="{Binding Name}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                    <TextBlock Grid.Row="2"
+                                               Text="{Binding Time}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                    <Button Grid.Row="3"
+                                            Command="{Binding ElementName=ThisWindow, Path=DeleteRecipe}"
+                                            CommandParameter="{Binding}"
+                                            Content="Удалить"
+                                            HorizontalAlignment="Center"
+                                            Margin="5"/>
+                                    
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </TabItem>
+        
+        <!-- Рецепты -->
+        <TabItem>
+            <TabItem.Header>
+                <Image MaxHeight="32" MaxWidth="32" Source="../Assets/recipeBook.png"/>
+            </TabItem.Header>
+            <Border CornerRadius="10" Background="White"
+                    Opacity="0.7" Margin="0, 5, 0, 5"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch">
+                <Grid Opacity="1.4">
+                    <ListBox Name="CategoryListBox" 
+                             Grid.Column="0" Grid.Row="0"
+                             ItemsSource="{Binding Categories}"
+                             SelectedItem="{Binding SelectCategory}"
+                             CornerRadius="25" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox x:Name="RecipeListBox" Grid.Column="1" Grid.Row="0"
+                             ItemsSource="{Binding SelectedRecipes}"
+                             CornerRadius="25"
+                             Margin="5"
+                             Padding="5">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image Grid.Row="0"
+                                           Source="{Binding Preview, Converter=
+                                           {StaticResource BitmapAssetValueConverter}}"
+                                           Height="200" Width="200"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Margin="5"/>
+                                    <TextBlock Grid.Row="1"
+                                               Text="{Binding Name}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                    <TextBlock Grid.Row="2"
+                                               Text="{Binding Time}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                    <Button Grid.Row="3"
+                                            Command="{Binding ElementName=ThisWindow, Path=AddFavorite}"
+                                            CommandParameter="{Binding}"
+                                            Content="В избранное"
+                                            HorizontalAlignment="Center"
+                                            Margin="5"/>
+                                    
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                    <views:RecipeInfoView Grid.Column="2" 
+                                          DataContext="{Binding ElementName=RecipeListBox, 
+                                          Path=SelectedItem}"/>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+        </TabItem>
+        
+        <!-- Новый рецепт -->
+        <TabItem>
+            <TabItem.Header>
+                <Image MaxHeight="32" MaxWidth="32" Source="../Assets/Add.png"/>
+            </TabItem.Header>
+            <StackPanel Background="White">
+                <TextBox Watermark="Название" Margin="5" Text="{Binding NewRecipe.Name}"/>
+                <TextBox Watermark="Время приготовления" Margin="5" Text="{Binding NewRecipe.Time}"/>
+                <TextBlock Text="Категория:" FontSize="18" FontStyle="Italic" Margin="5"/>    
+                <DataGrid Name="CategoryGrid" 
+                          ItemsSource="{Binding Categories}"
+                          Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="Название" Binding="{Binding Name}"/>
+                        <DataGridCheckBoxColumn Header="☑" Binding="{Binding SelectCategory}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Command="{ReflectionBinding CreateNewCategoryButton}"
+                        CommandParameter="{ReflectionBinding ElementName=ThisWindow}"
+                        Content="Добавить категорию"
+                        Margin="5" HorizontalAlignment="Left"/>
+                <TextBlock Text="Ингридиенты:" FontSize="18" FontStyle="Italic" Margin="5"/>      
+                <DataGrid Name="IngredientGrid"
+                          ItemsSource="{Binding IngredientsByNewRecipe}"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Ingredient.Name}" IsReadOnly="False"/>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding AmountIngredients}" IsReadOnly="False"/>
+                        <DataGridCheckBoxColumn Header="☑" Binding="{Binding Ingredient.SelectIngridient}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Command="{ReflectionBinding CreateNewIngridient}"
+                        CommandParameter="{ReflectionBinding ElementName=ThisWindow}"
+                        Content="Добавить ингредиент"
+                        Margin="5" HorizontalAlignment="Left"/>
+                <Grid>
+                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Watermark="Путь до картинки" Margin="5"
+                             HorizontalAlignment="Stretch" 
+                             Text="{Binding SelectedImagePath}"/>
+                    <Button Grid.Column="1" HorizontalAlignment="Right" MaxHeight="32" 
+                            Background="Transparent" BorderBrush="Black"
+                            Margin="5" CornerRadius="3"
+                            Command="{ReflectionBinding SelectImgeButton}"
+                            CommandParameter="{ReflectionBinding ElementName=ThisWindow}">
+                        <Image Source="/Assets/folder.png"></Image>
+                    </Button>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <TextBox Watermark="Описание приготовления (не более 1000 символов)" Margin="5" 
+                         Text="{Binding NewRecipe.Instruction}" Height="150"
+                         VerticalAlignment="Stretch" AcceptsReturn="True"/>
+                <Button Command="{Binding CreateNewRecipe}"
+                        Content="Сохранить рецепт"
+                        Margin="5" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </TabItem>
+        
+    </TabControl>
+    
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    </Grid>
+</Window>

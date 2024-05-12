@@ -1,0 +1,38 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TasteRecipes.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TasteRecipes.Views.RegistrationView"
+        x:DataType="vm:RegistrationViewModel"
+        x:Name="Window"
+        Title="RegistrationView">
+    
+        <Design.DataContext>
+                <vm:RegistrationViewModel/>
+        </Design.DataContext>
+        
+        <Window.Styles>
+                <StyleInclude Source="/Styles/AppStyle.axaml" />
+        </Window.Styles>
+        
+        <StackPanel Opacity="2">
+                <TextBox Watermark="Никнейм" Text="{Binding NewUser.Nickname}" 
+                         Margin="5" HorizontalAlignment="Stretch"/>
+                <TextBox Watermark="Логин" Text="{Binding NewUser.Login}" 
+                         Margin="5" HorizontalAlignment="Stretch"/>
+                <TextBox Watermark="Пароль" Text="{Binding NewUser.Password}" 
+                         Margin="5" HorizontalAlignment="Stretch"/>
+                <TextBox Watermark="Подтверждение пароля" Text="{Binding ConfirmPassword}" 
+                         Margin="5" HorizontalAlignment="Stretch"/>
+                <Button  Content="Регистация"
+                         Command="{ReflectionBinding CreateAccountButton}"
+                         CommandParameter="{ReflectionBinding ElementName=Window}"
+                         HorizontalAlignment="Center" Margin="5" Background="DarkOrange"/>
+                <Button  Content="Авторизация"
+                         Command="{ReflectionBinding AuthorizationButton}"
+                         CommandParameter="{ReflectionBinding ElementName=Window}"
+                         HorizontalAlignment="Center" Margin="5" Background="Transparent"/>
+        </StackPanel>
+</Window>
