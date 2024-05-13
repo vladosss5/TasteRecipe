@@ -172,9 +172,6 @@ namespace TasteRecipes.Data.Migrations
                     b.Property<long>("AuthorId")
                         .HasColumnType("bigint");
 
-                    b.Property<int[]>("EnergyValue")
-                        .HasColumnType("integer[]");
-
                     b.Property<string>("Instruction")
                         .HasColumnType("text");
 

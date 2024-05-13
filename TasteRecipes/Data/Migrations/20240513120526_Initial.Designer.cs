@@ -12,7 +12,7 @@ using TasteRecipes.Data.Context;
 namespace TasteRecipes.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240510175910_Initial")]
+    [Migration("20240513120526_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -175,8 +175,8 @@ namespace TasteRecipes.Data.Migrations
                     b.Property<long>("AuthorId")
                         .HasColumnType("bigint");
 
-                    b.Property<int[]>("EnergyValue")
-                        .HasColumnType("integer[]");
+                    b.Property<string>("Instruction")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()

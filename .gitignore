@@ -4,5 +4,3 @@ obj/
 .idea
 netcoreapp3.1/
 config/
-TasteRecipes/AssetsUser
-TasteRecipes/BitmapAssetValueConverter.cs

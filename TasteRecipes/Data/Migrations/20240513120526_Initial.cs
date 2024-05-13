@@ -60,7 +60,7 @@ namespace TasteRecipes.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
                     Name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
                     Time = table.Column<int>(type: "integer", nullable: true),
-                    EnergyValue = table.Column<int[]>(type: "integer[]", nullable: true),
+                    Instruction = table.Column<string>(type: "text", nullable: true),
                     AuthorId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
