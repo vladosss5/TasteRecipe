@@ -282,7 +282,7 @@ public class MainWindowViewModel : ViewModelBase
 
         if (identity == null)
         {
-            var newFavourite = new Favourite { UserId = 1, Recipe = recipe };
+            var newFavourite = new Favourite { UserId = AuthUserNow.Id, Recipe = recipe };
             _dataContext.Favourites.Add(newFavourite);
             _dataContext.SaveChanges();
             Favourites.Add(newFavourite);

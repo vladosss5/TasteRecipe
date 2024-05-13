@@ -33,7 +33,7 @@
         <!-- Профиль -->
         <TabItem>
             <TabItem.Header>
-                <Image MaxHeight="32" MaxWidth="32" Source="../Assets/profile.png"/>
+                <Image MaxHeight="25" MaxWidth="25" Source="../Assets/profile.png"/>
             </TabItem.Header>
             <Grid>
                 <Border Background="White" CornerRadius="10"
@@ -211,7 +211,7 @@
         <!-- Рецепты -->
         <TabItem>
             <TabItem.Header>
-                <Image MaxHeight="32" MaxWidth="32" Source="../Assets/recipeBook.png"/>
+                <Image MaxHeight="25" MaxWidth="25" Source="../Assets/recipeBook.png"/>
             </TabItem.Header>
             <Border CornerRadius="10" Background="White"
                     Opacity="0.7" Margin="0, 5, 0, 5"
@@ -294,7 +294,7 @@
         <!-- Новый рецепт -->
         <TabItem>
             <TabItem.Header>
-                <Image MaxHeight="32" MaxWidth="32" Source="../Assets/Add.png"/>
+                <Image MaxHeight="25" MaxWidth="25" Source="../Assets/Add.png"/>
             </TabItem.Header>
             <StackPanel Background="White">
                 <TextBox Watermark="Название" Margin="5" Text="{Binding NewRecipe.Name}"/>

@@ -4,6 +4,8 @@ using System.Reflection;
 using Avalonia.Data.Converters;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace TasteRecipes;
 
@@ -30,10 +32,20 @@ public class BitmapAssetValueConverter : IValueConverter
                 string assemblyName = Assembly.GetEntryAssembly().GetName().Name;
                 uri = new Uri($"avares://{assemblyName}/{rawUri}");
             }
-            
-            var asset = AssetLoader.Open(uri);
 
-            return new Bitmap(asset);
+            try
+            {
+                var asset = AssetLoader.Open(uri);
+                return new Bitmap(asset);
+            }
+            catch (Exception e)
+            {
+                MessageBoxManager
+                    .GetMessageBoxStandard("Ошибка", "Не все изображения были загружены", ButtonEnum.Ok)
+                    .ShowAsync();
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         throw new NotSupportedException();
